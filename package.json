@@ -1,0 +1,19 @@
+{
+  "name": "slackathon-2021",
+  "version": "1.0.0",
+  "description": "cOol cool app",
+  "main": "index.js",
+  "dependencies": {
+    "@slack/bolt": "^3.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.soma.salesforce.com:elliot-fiske/slackathon.git"
+  },
+  "author": "Elliot Fiske",
+  "license": "ISC"
+}
