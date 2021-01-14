@@ -4,7 +4,8 @@
   "description": "cOol cool app",
   "main": "index.js",
   "dependencies": {
-    "@slack/bolt": "^3.0.0"
+    "@slack/bolt": "^3.0.0",
+    "dotenv": "^8.2.0"
   },
   "devDependencies": {},
   "scripts": {
