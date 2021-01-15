@@ -15,6 +15,25 @@ function makeEditBlocks(account) {
     value: `value-${ratingDict[account.Rating]}`
   };
 
+  const typeDict = {
+    '--None--': 0,
+    Prospect: 1,
+    'Customer - Direct': 2,
+    'Customer - Channel': 3,
+    'Channel Partner / Reseller': 4,
+    'Installation Partner': 5,
+    'Technology Partner': 6
+  };
+
+  const typeValue = {
+    text: {
+      type: 'plain_text',
+      text: account.Type,
+      emoji: true
+    },
+    value: `value-${typeDict[account.Type]}`
+  };
+
   return {
     title: {
       type: 'plain_text',
@@ -72,6 +91,7 @@ function makeEditBlocks(account) {
             text: 'Select an item',
             emoji: true
           },
+          initial_option: typeValue,
           options: [
             {
               text: {
@@ -96,6 +116,38 @@ function makeEditBlocks(account) {
                 emoji: true
               },
               value: 'value-2'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Customer - Channel',
+                emoji: true
+              },
+              value: 'value-3'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Channel Partner / Reseller',
+                emoji: true
+              },
+              value: 'value-4'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Installation Partner',
+                emoji: true
+              },
+              value: 'value-5'
+            },
+            {
+              text: {
+                type: 'plain_text',
+                text: 'Technology Partner',
+                emoji: true
+              },
+              value: 'value-6'
             }
           ],
           action_id: 'static_select-action'
@@ -240,8 +292,7 @@ module.exports = function (app, conn) {
                 },
                 {
                   type: 'mrkdwn',
-                  text:
-                    `*Rating*\n${account.Rating}\n\n*Type*\n${account.Type}\n`
+                  text: `*Rating*\n${account.Rating}\n\n*Type*\n${account.Type}\n`
                 }
               ]
             }
@@ -287,7 +338,9 @@ module.exports = function (app, conn) {
       });
       shownError = true;
     } else {
-      ack(); // close this modal - or also possible to set `response_action: 'clear'`
+      ack({
+        response_action: 'clear'
+      }); // close this modal - or also possible to set `response_action: 'clear'`
     }
   });
 };
